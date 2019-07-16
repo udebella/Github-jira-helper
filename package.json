@@ -1,11 +1,20 @@
 {
   "name": "github-jira-helper",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple app that allow to retrieve list of jiras from a list of commits",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server ./src -p 3000",
+    "test": "karma start config/karma.conf.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "udebella",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "http-server": "^0.11.1",
+    "karma": "^4.2.0",
+    "karma-chai": "^0.1.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-mocha": "^1.3.0",
+    "mocha": "^6.1.4"
+  }
 }
