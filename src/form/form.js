@@ -8,7 +8,8 @@ class Form extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <gjh-form-field data-test="api-url" label="Github API URL"></gjh-form-field>
-            <gjh-form-field data-test="projectName" label="Project name"></gjh-form-field>`
+            <gjh-form-field data-test="project-name" label="Project name"></gjh-form-field>
+            <gjh-form-field data-test="commit-hash" label="Commit hash"></gjh-form-field>`
     }
 }
 
