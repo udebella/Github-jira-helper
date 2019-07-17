@@ -5,8 +5,15 @@ class FormField extends HTMLElement {
     static get tagName() {
         return 'gjh-form-field'
     }
+
+    get label() {
+        return this.getAttribute('label')
+    }
+
     connectedCallback() {
-        this.innerHTML = `<gjh-delayed-input></gjh-delayed-input>`
+        this.innerHTML = `
+            <label>${this.label}</label>
+            <gjh-delayed-input></gjh-delayed-input>`
     }
 }
 
