@@ -41,7 +41,7 @@ class Form extends HTMLElement {
         const url = (project, commit) => `${this._apiUrl}/repos/${project}/compare/${commit}...HEAD`
 
         const extractJiras = message => {
-            const result = /([A-Z]*-[0-9]*)/.exec(message)
+            const result = /([A-Z]+-[0-9]+)/.exec(message)
             return result ? result[0] : 'unassigned'
         }
 
