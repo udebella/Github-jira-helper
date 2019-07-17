@@ -15,7 +15,8 @@ class DelayedInput extends HTMLElement {
         this._input.addEventListener('input', () => {
             clearTimeout(timeout)
             timeout = setTimeout(() => {
-                this.dispatchEvent(new MessageEvent('textEntered', {data : this.value}))
+                const event = new MessageEvent('textEntered', {data : this.value, bubbles: true});
+                this.dispatchEvent(event)
             }, 1000)
         })
     }
