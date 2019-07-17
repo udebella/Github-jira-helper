@@ -1,0 +1,12 @@
+import {declareWebComponent} from '../utils.js'
+
+class {{pascalCase componentName}} extends HTMLElement {
+    static get tagName() {
+        return 'gjh-{{dashCase componentName}}'
+    }
+    connectedCallback() {
+        this.innerHTML = `<p>displays text</p>`
+    }
+}
+
+declareWebComponent({{pascalCase componentName}})
