@@ -23,5 +23,11 @@ describe('Form component', () => {
 
             expect(commitHash.getAttribute('label')).to.equals('Commit hash')
         });
+
+        it('should display the commit list', () => {
+            const commitList = component.querySelector('[data-test=commit-list]')
+
+            expect(commitList).to.exist
+        });
     });
 });
