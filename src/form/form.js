@@ -1,5 +1,6 @@
 import {declareWebComponent} from '../utils.js'
 import '../form-field/form-field.js'
+import '../commit-list/commit-list.js'
 
 class Form extends HTMLElement {
     static get tagName() {
@@ -28,7 +29,7 @@ class Form extends HTMLElement {
     }
 
     set jirasResults(jiras) {
-        this._jiraResults.textContent = jiras
+        this._jiraResults.list = jiras
     }
 
     computeJiras() {
@@ -47,7 +48,7 @@ class Form extends HTMLElement {
 
         const response = await fetch(url(this._projectName, this._commitHash))
         const {commits} = await response.json()
-        const result = commits
+        this.jirasResults = commits
             .map(({commit}) => commit)
             .map(({message}) => message)
             .reduce((acc, next) => {
@@ -55,7 +56,6 @@ class Form extends HTMLElement {
                 acc[jira] = [...(acc[jira] || []), next]
                 return acc
             }, {})
-        this.jirasResults = JSON.stringify(result)
     }
 
     connectedCallback() {
@@ -63,11 +63,11 @@ class Form extends HTMLElement {
             <gjh-form-field data-test="api-url" label="Github API URL"></gjh-form-field>
             <gjh-form-field data-test="project-name" label="Project name"></gjh-form-field>
             <gjh-form-field data-test="commit-hash" label="Commit hash"></gjh-form-field>
-            <pre></pre>`
+            <gjh-commit-list data-test="commit-list"></gjh-commit-list>`
         this.apiUrl = this.querySelector('[data-test=api-url]')
         this.projectName = this.querySelector('[data-test=project-name]')
         this.commitHash = this.querySelector('[data-test=commit-hash]')
-        this._jiraResults = this.querySelector('pre')
+        this._jiraResults = this.querySelector('[data-test=commit-list]')
     }
 }
 
