@@ -2,43 +2,48 @@ import {declareWebComponent} from '../utils.js'
 import '../form-field/form-field.js'
 import '../commit-list/commit-list.js'
 
+const setJiras = element => jiras => {
+    element.list = jiras
+}
+
 class Form extends HTMLElement {
     static get tagName() {
         return 'gjh-form'
     }
 
+    constructor() {
+        super()
+        this.fetch = fetch
+    }
+
     set apiUrl(element) {
         element.addEventListener('textEntered', ({data}) => {
             this._apiUrl = data
-            this.computeJiras()
+            this.computeList()
         })
     }
 
     set projectName(element) {
         element.addEventListener('textEntered', ({data}) => {
             this._projectName = data
-            this.computeJiras()
+            this.computeList()
         })
     }
 
     set commitHash(element) {
         element.addEventListener('textEntered', ({data}) => {
             this._commitHash = data
-            this.computeJiras()
+            this.computeList()
         })
     }
 
-    set jirasResults(jiras) {
-        this._jiraResults.list = jiras
-    }
-
-    computeJiras() {
+    async computeList() {
         if (this._apiUrl && this._projectName && this._commitHash) {
-            this.needToBeTested()
+            this.setJiras(await this.fetchJiras())
         }
     }
 
-    async needToBeTested() {
+    async fetchJiras() {
         const url = (project, commit) => `${this._apiUrl}/repos/${project}/compare/${commit}...HEAD`
 
         const extractJiras = message => {
@@ -46,9 +51,9 @@ class Form extends HTMLElement {
             return result ? result[0] : 'unassigned'
         }
 
-        const response = await fetch(url(this._projectName, this._commitHash))
+        const response = await this.fetch.apply(window, [url(this._projectName, this._commitHash)])
         const {commits} = await response.json()
-        this.jirasResults = commits
+        return commits
             .map(({commit}) => commit)
             .map(({message}) => message)
             .reduce((acc, next) => {
@@ -67,7 +72,7 @@ class Form extends HTMLElement {
         this.apiUrl = this.querySelector('[data-test=api-url]')
         this.projectName = this.querySelector('[data-test=project-name]')
         this.commitHash = this.querySelector('[data-test=commit-hash]')
-        this._jiraResults = this.querySelector('[data-test=commit-list]')
+        this.setJiras = setJiras(this.querySelector('[data-test=commit-list]'))
     }
 }
 
