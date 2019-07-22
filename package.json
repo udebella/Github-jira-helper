@@ -5,6 +5,7 @@
   "scripts": {
     "start": "http-server ./src -p 3000",
     "test": "karma start config/karma.conf.js",
+    "lint": "eslint --fix ./src",
     "plop": "plop"
   },
   "author": "udebella",
@@ -22,5 +23,9 @@
     "plop": "^2.4.0",
     "sinon": "^7.3.2",
     "sinon-chai": "^3.3.0"
+  },
+  "dependencies": {
+    "eslint": "^6.0.1",
+    "karma-eslint": "^2.2.0"
   }
 }

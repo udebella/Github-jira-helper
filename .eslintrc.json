@@ -1,0 +1,37 @@
+{
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"extends": [
+		"eslint:recommended"
+	],
+	"rules": {
+		"semi": [
+			"error",
+			"never"
+		],
+		"comma-dangle": [
+			"error",
+			"always-multiline"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
+		"indent": [
+			"error",
+			"tab"
+		]
+	},
+	"env": {
+		"node": true,
+		"mocha": true,
+		"browser": true,
+		"es6": true
+	},
+	"globals": {
+		"sinon": true,
+		"chai": true
+	}
+}
