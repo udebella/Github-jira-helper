@@ -1,5 +1,5 @@
 import {declareWebComponent} from '../utils.js'
-import '../delayed-input/delayed-input.js'
+import '../delayed/delayed.js'
 
 class FormField extends HTMLElement {
 	static get tagName() {
@@ -13,7 +13,7 @@ class FormField extends HTMLElement {
 	connectedCallback() {
 		this.innerHTML = `
 			<label>${this.label}</label>
-			<gjh-delayed-input></gjh-delayed-input>`
+			<input is="gjh-delayed" type="text">`
 	}
 }
 

@@ -17,21 +17,21 @@ class Form extends HTMLElement {
 	}
 
 	set apiUrl(element) {
-		element.addEventListener('textEntered', ({data}) => {
+		element.addEventListener('delayed-input', ({data}) => {
 			this._apiUrl = data
 			this.computeList()
 		})
 	}
 
 	set projectName(element) {
-		element.addEventListener('textEntered', ({data}) => {
+		element.addEventListener('delayed-input', ({data}) => {
 			this._projectName = data
 			this.computeList()
 		})
 	}
 
 	set commitHash(element) {
-		element.addEventListener('textEntered', ({data}) => {
+		element.addEventListener('delayed-input', ({data}) => {
 			this._commitHash = data
 			this.computeList()
 		})

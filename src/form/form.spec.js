@@ -45,7 +45,7 @@ describe('Form component', () => {
 			const projectName = component.querySelector('[data-test=project-name]')
 			component.setJiras = sinon.stub()
 
-			projectName.dispatchEvent(new MessageEvent('textEntered', {data: 'project name'}))
+			projectName.dispatchEvent(new MessageEvent('delayed-input', {data: 'project name'}))
 			await new Promise(setTimeout)
 
 			expect(component.setJiras).not.to.have.been.called
@@ -57,9 +57,9 @@ describe('Form component', () => {
 			const commitHash = component.querySelector('[data-test=commit-hash]')
 			component.setJiras = sinon.stub()
 
-			apiUrl.dispatchEvent(new MessageEvent('textEntered', {data: 'https://api.github.com'}))
-			projectName.dispatchEvent(new MessageEvent('textEntered', {data: 'udebella/Github-dashboard'}))
-			commitHash.dispatchEvent(new MessageEvent('textEntered', {data: 'e667110abb874b1757cad67bb08f84f9bb69394f'}))
+			apiUrl.dispatchEvent(new MessageEvent('delayed-input', {data: 'https://api.github.com'}))
+			projectName.dispatchEvent(new MessageEvent('delayed-input', {data: 'udebella/Github-dashboard'}))
+			commitHash.dispatchEvent(new MessageEvent('delayed-input', {data: 'e667110abb874b1757cad67bb08f84f9bb69394f'}))
 			await new Promise(setTimeout)
 
 			expect(component.setJiras).to.have.been.calledWith({

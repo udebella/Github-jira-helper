@@ -11,7 +11,7 @@ describe('FormField component', () => {
 
 	describe('Initialization', () => {
 		it('should display a delayed input', () => {
-			expect(component.querySelector('gjh-delayed-input')).to.exist
+			expect(component.querySelector('input[is=gjh-delayed]')).to.exist
 		})
 
 		it('should display a label for the delayed input component', () => {
@@ -34,10 +34,10 @@ describe('FormField component', () => {
 		it('should bubble delayed input events', () => {
 			const input = component.querySelector('input')
 			const stub = sinon.stub()
-			component.addEventListener('textEntered', stub)
+			component.addEventListener('delayed-input', stub)
 
 			input.value = 'input text'
-			input.dispatchEvent(new Event('input', {bubbles: true}))
+			input.dispatchEvent(new Event('input'))
 			clock.tick(1000)
 
 			expect(stub).to.have.been.called

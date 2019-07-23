@@ -1,6 +1,8 @@
 export function declareWebComponent(customElementClass) {
 	const {tagName} = customElementClass
 	if (!customElements.get(tagName)) {
-		customElements.define(tagName, customElementClass)
+		customElements.define(tagName, customElementClass, {
+			extends: customElementClass.extends,
+		})
 	}
 }
