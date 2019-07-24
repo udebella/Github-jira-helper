@@ -1,11 +1,13 @@
-describe('{{pascalCase componentName}} component', () => {
-    let component
-    beforeEach(() => {
-        component = document.createElement('gjh-{{dashCase componentName}}')
-        document.querySelector('body').append(component)
-    });
+const {expect} = chai
 
-    it('should work', () => {
-        expect(component.textContent).to.equals('displays text')
-    });
-});
+describe('{{pascalCase componentName}} component', () => {
+	let component
+	beforeEach(() => {
+		component = document.createElement('gjh-{{dashCase componentName}}')
+		document.querySelector('body').append(component)
+	})
+
+	it('should work', () => {
+		expect(component.textContent).to.equals('displays text')
+	})
+})
