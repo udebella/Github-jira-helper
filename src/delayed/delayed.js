@@ -20,9 +20,4 @@ class Delayed extends HTMLInputElement {
 	}
 }
 
-// if (!customElements.get(Delayed.tagName)) {
-// 	customElements.define(Delayed.tagName, Delayed, {
-// 		extends: 'input',
-// 	})
-// }
 declareWebComponent(Delayed)
